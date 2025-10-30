@@ -31,7 +31,7 @@ body {
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .logo-img {
@@ -41,9 +41,9 @@ body {
 
 .site-name {
   font-family: 'Press Start 2P', cursive;
-  font-size: 18px;
+  font-size: 15px;
   color: #005541;
-  letter-spacing: 1px;
+  letter-spacing: 0.2px;
 }
 
 /* Container dos botões */
