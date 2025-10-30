@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalhes do Jogo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="logo-container">
+      <img src="logo_checkpoint.png" alt="Checkpoint Logo" class="logo-img">
+      <span class="site-name">CHECKPOINT</span>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main class="game-details">
+
+    <!-- Header do jogo: poster + informações -->
+    <div class="game-header">
+      <img id="gamePoster" alt="Poster do Jogo" class="game-poster-detail">
+      <div class="game-info-detail">
+        <h1 id="gameTitle">Nome do Jogo</h1>
+        <p id="gamePlatform">Plataforma: ...</p>
+        <p id="gameGenre">Gênero: ...</p>
+        <p id="gameYear">Ano: ...</p>
+        <p id="gameMode">Modo: ...</p>
+        <p id="gameRating">Avaliação: ...</p>
+        <p id="gameDescription">Descrição do jogo...</p>
+
+        <!-- Ações futuras (sem funcionalidade por enquanto) -->
+        <div class="game-actions">
+          <button class="action-btn">Adicionar avaliação</button>
+          <button class="action-btn">Adicionar à lista</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de avaliações -->
+    <section class="reviews-section">
+      <h2>Avaliações</h2>
+      <ul id="reviewsList">
+        <li>⭐ 5 - Excelente jogo!</li>
+        <li>⭐ 4 - Muito bom, mas poderia melhorar...</li>
+      </ul>
+    </section>
+
+    <!-- Seção de informações adicionais -->
+    <section class="extra-info">
+      <h2>Informações Adicionais</h2>
+      <p id="gamePublisher">Publisher: ...</p>
+      <p id="gameReleaseDate">Data de lançamento: ...</p>
+      <p id="gameTags">Tags: ...</p>
+    </section>
+
+  </main>
+
+        <script src="games-data.js"></script>
+        <script src="scripts/game.js"></script>
+</body>
+</html>
+
 
