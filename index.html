@@ -1,166 +1,69 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jogos</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="topbar">
-    <div class="logo-container">
-      <img src="logo_checkpoint.png" alt="Checkpoint Logo" class="logo-img">
-      <span class="site-name">CHECKPOINT</span>
-    </div>
-    <nav class="nav-container">
-      <a href="index.html" class="nav-btn active">Jogos</a>
-      <a href="listas.html" class="nav-btn">Listas</a>
-      <a href="atividade.html" class="nav-btn">Atividade</a>
-      <a href="amigos.html" class="nav-btn">Amigos</a>
-      <a href="perfil.html" class="nav-btn">Perfil</a>
-    </nav>
-  </header>
+window.onload = function() {
+  // 1️⃣ Captura o nome do jogo passado pela URL
+  const params = new URLSearchParams(window.location.search);
+  const gameTitle = params.get('title');
 
-  <main class="content">
-    <div class="search-section">
-      <div class="search-bar-container">
-        <div class="search-input-wrapper">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.35-4.35"></path>
-          </svg>
-          <input 
-            type="text" 
-            class="search-bar" 
-            placeholder="Pesquisar jogos..."
-          />
-        </div>
-        <button class="search-btn">Pesquisar</button>
-      </div>
+  // 2️⃣ Busca o jogo no array allGames (do games-data.js)
+  const game = allGames.find(g => g.title === gameTitle);
 
-      <div class="filters-container">
-        <select class="filter-select">
-          <option value="">Plataforma</option>
-          <option value="pc">PC</option>
-          <option value="playstation">PlayStation</option>
-          <option value="xbox">Xbox</option>
-          <option value="nintendo">Nintendo Switch</option>
-          <option value="mobile">Mobile</option>
-        </select>
+  // 3️⃣ Referências dos elementos HTML
+  const titleElement = document.getElementById('gameTitle');
+  const posterElement = document.getElementById('gamePoster');
+  const descriptionElement = document.getElementById('gameDescription');
+  const platformElement = document.getElementById('gamePlatform');
+  const genreElement = document.getElementById('gameGenre');
+  const yearElement = document.getElementById('gameYear');
+  const ratingElement = document.getElementById('gameRating');
+  const reviewsList = document.getElementById('reviewsList');
+  const addReviewBtn = document.getElementById('addReviewBtn');
 
-        <select class="filter-select">
-          <option value="">Gênero</option>
-          <option value="acao">Ação</option>
-          <option value="aventura">Aventura</option>
-          <option value="rpg">RPG</option>
-          <option value="estrategia">Estratégia</option>
-          <option value="esportes">Esportes</option>
-          <option value="corrida">Corrida</option>
-          <option value="puzzle">Puzzle</option>
-          <option value="simulacao">Simulação</option>
-        </select>
+  // 4️⃣ Verifica se o jogo existe
+  if (!game) {
+    document.body.innerHTML = '<p>Jogo não encontrado.</p>';
+    return;
+  }
 
-        <select class="filter-select" id="yearFilter">
-          <option value="">Ano de Lançamento</option>
-        </select>
+  // 5️⃣ Preenche os elementos com os dados do jogo
+  titleElement.textContent = game.title;
+  posterElement.src = game.poster;
+  descriptionElement.textContent = game.description || 'Sem descrição disponível.';
+  platformElement.textContent = `Plataforma: ${game.platform}`;
+  genreElement.textContent = `Gênero: ${game.genre}`;
+  yearElement.textContent = `Ano: ${game.year}`;
+  ratingElement.textContent = `Avaliação: ${game.rating}`;
 
-        <select class="filter-select">
-          <option value="">Modo de Jogo</option>
-          <option value="singleplayer">Single Player</option>
-          <option value="multiplayer">Multiplayer</option>
-          <option value="coop">Co-op</option>
-          <option value="online">Online</option>
-        </select>
+  // 6️⃣ Exibe avaliações salvas no localStorage
+  showReviews();
 
-        <div class="rating-filter">
-          <span class="rating-label">Avaliação:</span>
-          <div class="stars-container" id="starsContainer">
-            <div class="star" data-star="1">
-              <div class="star-half" data-value="0.5"></div>
-              <div class="star-full" data-value="1"></div>
-            </div>
-            <div class="star" data-star="2">
-              <div class="star-half" data-value="1.5"></div>
-              <div class="star-full" data-value="2"></div>
-            </div>
-            <div class="star" data-star="3">
-              <div class="star-half" data-value="2.5"></div>
-              <div class="star-full" data-value="3"></div>
-            </div>
-            <div class="star" data-star="4">
-              <div class="star-half" data-value="3.5"></div>
-              <div class="star-full" data-value="4"></div>
-            </div>
-            <div class="star" data-star="5">
-              <div class="star-half" data-value="4.5"></div>
-              <div class="star-full" data-value="5"></div>
-            </div>
-          </div>
-        </div>
+  // --- FUNÇÃO PARA MOSTRAR AVALIAÇÕES ---
+  function showReviews() {
+    const reviews = JSON.parse(localStorage.getItem(`reviews_${gameTitle}`)) || [];
+    if (!reviewsList) return;
+    reviewsList.innerHTML = '';
+    reviews.forEach(review => {
+      const li = document.createElement('li');
+      li.textContent = `⭐ ${review.rating} - ${review.text}`;
+      reviewsList.appendChild(li);
+    });
+  }
 
-        <button class="clear-filters-btn">Limpar Filtros</button>
-      </div>
-    </div>
+  // --- FUNÇÃO PARA ADICIONAR AVALIAÇÃO ---
+  if (addReviewBtn) {
+    addReviewBtn.addEventListener('click', () => {
+      const rating = prompt('Dê uma nota de 1 a 5:');
+      const text = prompt('Digite um comentário:');
 
-    <h1>Página de Jogos</h1>
-
-    <script>
-      // Preencher dropdown de anos (1958 até ano atual)
-      const yearFilter = document.getElementById('yearFilter');
-      const currentYear = new Date().getFullYear();
-      for (let year = currentYear; year >= 1958; year--) {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        yearFilter.appendChild(option);
+      if (!rating || rating < 1 || rating > 5) {
+        alert('Nota inválida.');
+        return;
       }
 
-      // Sistema de avaliação por estrelas
-      let selectedRating = 0;
-      const starsContainer = document.getElementById('starsContainer');
-      const stars = starsContainer.querySelectorAll('.star');
-      const allStarParts = starsContainer.querySelectorAll('.star-half, .star-full');
+      const newReview = { rating: parseInt(rating), text };
+      const reviews = JSON.parse(localStorage.getItem(`reviews_${gameTitle}`)) || [];
+      reviews.push(newReview);
 
-      allStarParts.forEach(part => {
-        part.addEventListener('mouseenter', function() {
-          const value = parseFloat(this.dataset.value);
-          updateStars(value, false);
-        });
-
-        part.addEventListener('click', function() {
-          selectedRating = parseFloat(this.dataset.value);
-          updateStars(selectedRating, true);
-        });
-      });
-
-      starsContainer.addEventListener('mouseleave', function() {
-        updateStars(selectedRating, true);
-      });
-
-      function updateStars(rating) {
-        stars.forEach((star, index) => {
-          const starValue = index + 1;
-          star.classList.remove('half', 'full');
-          
-          if (rating >= starValue) {
-            star.classList.add('full');
-          } else if (rating >= starValue - 0.5) {
-            star.classList.add('half');
-          }
-        });
-      }
-
-      // Limpar filtros
-      document.querySelector('.clear-filters-btn').addEventListener('click', function() {
-        document.querySelectorAll('.filter-select').forEach(select => select.value = '');
-        document.querySelector('.search-bar').value = '';
-        selectedRating = 0;
-        updateStars(0, true);
-      });
-    </script>
-  </main>
-</body>
-</html>
+      localStorage.setItem(`reviews_${gameTitle}`, JSON.stringify(reviews));
+      showReviews();
+    });
+  }
+};
