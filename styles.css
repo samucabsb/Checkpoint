@@ -572,6 +572,76 @@ body {
   text-overflow: ellipsis;
 }
 
+/* Footer */
+    .footer {
+      padding: 60px 40px 30px;
+      background: rgba(0, 0, 0, 0.3);
+      border-top: 1px solid rgba(250, 247, 238, 0.1);
+    }
+
+    .footer-content {
+        width: 100%;
+        margin: 0;
+        padding: 0 40px;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 60px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.5rem;
+      color: #FAF7EE;
+    }
+
+    .footer-description {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      color: rgba(250, 247, 238, 0.6);
+      line-height: 1.6;
+    }
+
+    .footer-section h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #FAF7EE;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-link {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      color: rgba(250, 247, 238, 0.6);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: #FFD700;
+    }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid rgba(250, 247, 238, 0.1);
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      color: rgba(250, 247, 238, 0.5);
+    }
+
 /* Responsividade do grid */
 @media (max-width: 1400px) {
   .games-grid {
