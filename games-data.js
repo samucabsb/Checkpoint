@@ -1,650 +1,482 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Detalhes do Jogo - Checkpoint</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Estilos específicos para página de detalhes */
-    .game-detail-wrapper {
-      max-width: 1400px;
-      margin: 100px auto 50px;
-      padding: 0 40px;
-    }
-
-    /* Hero Section com Banner */
-    .game-hero {
-      position: relative;
-      height: 300px;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 40px;
-      background: linear-gradient(135deg, #003d2e 0%, #005541 100%);
-      display: flex;
-      align-items: center;
-      padding: 40px;
-      gap: 40px;
-    }
-
-    .game-hero-poster {
-      width: 200px;
-      height: 240px;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-      flex-shrink: 0;
-      z-index: 2;
-    }
-
-    .game-hero-content {
-      position: relative;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      z-index: 2;
-    }
-
-    .game-hero-title {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 2rem;
-      color: #FAF7EE;
-      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
-      line-height: 1.4;
-    }
-
-    .game-hero-info {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      color: rgba(250, 247, 238, 0.9);
-    }
-
-    .hero-info-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-info-label {
-      color: rgba(250, 247, 238, 0.6);
-      font-weight: 500;
-    }
-
-    .hero-rating-display {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: rgba(0, 85, 65, 0.8);
-      border-radius: 8px;
-    }
-
-    .hero-rating-number {
-      font-size: 18px;
-      font-weight: 700;
-      color: #FAF7EE;
-    }
-
-    .hero-rating-stars {
-      color: #FFD700;
-      font-size: 14px;
-    }
-
-    /* Main Content Grid */
-    .game-main-content {
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    /* Sidebar com Poster */
-    .game-sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .game-poster-container {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s ease;
-    }
-
-    .game-poster-container:hover {
-      transform: translateY(-4px);
-    }
-
-    .game-poster-detail {
-      width: 100%;
-      display: block;
-    }
-
-    .game-rating-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(0, 85, 65, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 12px 16px;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    }
-
-    .rating-number-large {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      color: #FAF7EE;
-      line-height: 1;
-    }
-
-    .rating-stars {
-      font-size: 16px;
-      color: #FFD700;
-    }
-
-    /* Action Buttons */
-    .action-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .action-btn {
-      padding: 14px 20px;
-      border-radius: 10px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      border: 2px solid;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-
-    .action-btn-primary {
-      background-color: #005541;
-      border-color: #005541;
-      color: #FAF7EE;
-    }
-
-    .action-btn-primary:hover {
-      background-color: #007556;
-      border-color: #007556;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 85, 65, 0.4);
-    }
-
-    .action-btn-secondary {
-      background-color: transparent;
-      border-color: rgba(250, 247, 238, 0.3);
-      color: #FAF7EE;
-    }
-
-    .action-btn-secondary:hover {
-      background-color: rgba(250, 247, 238, 0.1);
-      border-color: #FAF7EE;
-      transform: translateY(-2px);
-    }
-
-    /* Info Section */
-    .game-info-section {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    .info-card {
-      background: rgba(250, 247, 238, 0.05);
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid rgba(250, 247, 238, 0.1);
-    }
-
-    .info-card h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.5rem;
-      color: #FAF7EE;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .info-card h2::before {
-      content: '';
-      width: 4px;
-      height: 24px;
-      background: #FFD700;
-      border-radius: 2px;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .info-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .info-label {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(250, 247, 238, 0.6);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .info-value {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      color: #FAF7EE;
-    }
-
-    .game-description {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      line-height: 1.7;
-      color: rgba(250, 247, 238, 0.9);
-    }
-
-    /* Tags */
-    .game-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .tag {
-      padding: 6px 14px;
-      background: rgba(255, 215, 0, 0.15);
-      border: 1px solid rgba(255, 215, 0, 0.3);
-      border-radius: 20px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      color: #FFD700;
-    }
-
-    /* Reviews Section */
-    .reviews-section {
-      margin-top: 40px;
-    }
-
-    .reviews-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .reviews-header h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.8rem;
-      color: #FAF7EE;
-    }
-
-    .add-review-btn {
-      padding: 12px 24px;
-      background-color: #FFD700;
-      border: none;
-      border-radius: 10px;
-      color: #005541;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .add-review-btn:hover {
-      background-color: #FFC700;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
-    }
-
-    .reviews-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      list-style: none;
-    }
-
-    .review-card {
-      background: rgba(250, 247, 238, 0.05);
-      border-radius: 12px;
-      padding: 20px;
-      border: 1px solid rgba(250, 247, 238, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .review-card:hover {
-      background: rgba(250, 247, 238, 0.08);
-      transform: translateX(4px);
-    }
-
-    .review-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .review-user {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: #FAF7EE;
-    }
-
-    .review-rating {
-      font-size: 16px;
-      color: #FFD700;
-    }
-
-    .review-text {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      line-height: 1.6;
-      color: rgba(250, 247, 238, 0.8);
-    }
-
-    .review-date {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
-      color: rgba(250, 247, 238, 0.5);
-      margin-top: 8px;
-    }
-
-    .no-reviews {
-      text-align: center;
-      padding: 40px;
-      color: rgba(250, 247, 238, 0.6);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-    }
-
-    /* Responsividade */
-    @media (max-width: 1024px) {
-      .game-main-content {
-        grid-template-columns: 1fr;
-      }
-
-      .game-sidebar {
-        display: grid;
-        grid-template-columns: 280px 1fr;
-        gap: 20px;
-      }
-
-      .game-hero-title {
-        font-size: 2rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .game-detail-wrapper {
-        padding: 0 20px;
-        margin-top: 80px;
-      }
-
-      .game-hero {
-        height: auto;
-        flex-direction: column;
-        padding: 30px 20px;
-        gap: 20px;
-      }
-
-      .game-hero-poster {
-        width: 160px;
-        height: 192px;
-      }
-
-      .game-hero-title {
-        font-size: 1.3rem;
-      }
-
-      .game-sidebar {
-        grid-template-columns: 1fr;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .reviews-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header class="topbar">
-    <div class="logo-container">
-      <img src="logo_checkpoint.png" alt="Checkpoint Logo" class="logo-img">
-      <span class="site-name">CHECKPOINT</span>
-    </div>
-    <nav class="nav-container">
-      <a href="inicio.html" class="nav-btn">Início</a>
-      <a href="index.html" class="nav-btn">Jogos</a>
-      <a href="listas.html" class="nav-btn">Listas</a>
-      <a href="amigos.html" class="nav-btn">Amigos</a>
-      <a href="perfil.html" class="nav-btn">Perfil</a>
-    </nav>
-  </header>
-
-  <main class="game-detail-wrapper">
-    <!-- Hero Section -->
-    <div class="game-hero">
-      <img id="heroPoster" src="" alt="Poster" class="game-hero-poster">
-      <div class="game-hero-content">
-        <h1 class="game-hero-title" id="heroTitle"></h1>
-        <div class="game-hero-info">
-          <div class="hero-info-item">
-            <span class="hero-info-label">Ano:</span>
-            <span id="heroYear"></span>
-          </div>
-          <div class="hero-info-item">
-            <span class="hero-info-label">Plataforma:</span>
-            <span id="heroPlatform"></span>
-          </div>
-          <div class="hero-rating-display">
-            <span class="hero-rating-number" id="heroRating"></span>
-            <span class="hero-rating-stars" id="heroRatingStars"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="game-main-content">
-      <!-- Sidebar -->
-      <aside class="game-sidebar">
-        <div class="game-poster-container">
-          <img id="gamePoster" src="" alt="Poster" class="game-poster-detail">
-          <div class="game-rating-badge">
-            <span class="rating-number-large" id="gameRating"></span>
-            <div class="rating-stars" id="ratingStars"></div>
-          </div>
-        </div>
-
-        <div class="action-buttons">
-          
-          <button class="action-btn action-btn-secondary">+ Adicionar à Lista</button>
-          <button class="action-btn action-btn-secondary">♥ Favoritar</button>
-          <button class="action-btn action-btn-secondary">✓ Marcar como Jogado</button>
-        </div>
-      </aside>
-
-      <!-- Info Section -->
-      <div class="game-info-section">
-        <!-- Sobre o Jogo -->
-        <div class="info-card">
-          <h2>Sobre o Jogo</h2>
-          <p class="game-description" id="gameDescription"></p>
-          <div class="game-tags" id="gameTags"></div>
-        </div>
-
-        <!-- Informações Técnicas -->
-        <div class="info-card">
-          <h2>Informações</h2>
-          <div class="info-grid">
-            <div class="info-item">
-              <span class="info-label">Plataforma</span>
-              <span class="info-value" id="gamePlatform"></span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Gênero</span>
-              <span class="info-value" id="gameGenre"></span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Desenvolvedor</span>
-              <span class="info-value" id="gameDeveloper"></span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Publisher</span>
-              <span class="info-value" id="gamePublisher"></span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Data de Lançamento</span>
-              <span class="info-value" id="gameReleaseDate"></span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Modo de Jogo</span>
-              <span class="info-value" id="gameMode"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Reviews Section -->
-    <section class="reviews-section">
-      <div class="reviews-header">
-        <h2>Avaliações da Comunidade</h2>
-        <button class="add-review-btn">+ Escrever Avaliação</button>
-      </div>
-      
-      <ul class="reviews-list" id="reviewsList"></ul>
-    </section>
-  </main>
-
-  <script src="games-data.js"></script>
-  <script>
-    // Pegar ID do jogo da URL (ex: game-detail.html?id=1)
-    const urlParams = new URLSearchParams(window.location.search);
-    const gameId = parseInt(urlParams.get('id')) || 1;
-
-    // Buscar o jogo pelo ID
-    const game = allGames.find(g => g.id === gameId);
-
-    if (game) {
-      // Atualizar título da página
-      document.title = `${game.title} - Checkpoint`;
-
-      // Hero Section
-      document.getElementById('heroPoster').src = game.poster;
-      document.getElementById('heroTitle').textContent = game.title;
-      document.getElementById('heroYear').textContent = game.year;
-      document.getElementById('heroPlatform').textContent = game.platform;
-      document.getElementById('heroRating').textContent = game.rating.toFixed(1);
-      
-      // Gerar estrelas para o hero
-      const heroFullStars = Math.floor(game.rating);
-      const heroHasHalfStar = game.rating % 1 >= 0.5;
-      let heroStarsHTML = '★'.repeat(heroFullStars);
-      if (heroHasHalfStar) heroStarsHTML += '⯨';
-      const heroEmptyStars = 5 - Math.ceil(game.rating);
-      heroStarsHTML += '☆'.repeat(heroEmptyStars);
-      document.getElementById('heroRatingStars').textContent = heroStarsHTML;
-
-      // Sidebar
-      document.getElementById('gamePoster').src = game.poster;
-      document.getElementById('gameRating').textContent = game.rating.toFixed(1);
-      
-      // Gerar estrelas baseado na nota
-      const fullStars = Math.floor(game.rating);
-      const hasHalfStar = game.rating % 1 >= 0.5;
-      let starsHTML = '★'.repeat(fullStars);
-      if (hasHalfStar) starsHTML += '⯨';
-      const emptyStars = 5 - Math.ceil(game.rating);
-      starsHTML += '☆'.repeat(emptyStars);
-      document.getElementById('ratingStars').textContent = starsHTML;
-
-      // Descrição
-      document.getElementById('gameDescription').textContent = game.description;
-
-      // Tags
-      const tagsContainer = document.getElementById('gameTags');
-      game.tags.forEach(tag => {
-        const tagElement = document.createElement('span');
-        tagElement.className = 'tag';
-        tagElement.textContent = tag;
-        tagsContainer.appendChild(tagElement);
-      });
-
-      // Informações
-      document.getElementById('gamePlatform').textContent = game.platform;
-      document.getElementById('gameGenre').textContent = game.genre;
-      document.getElementById('gameDeveloper').textContent = game.developer;
-      document.getElementById('gamePublisher').textContent = game.publisher;
-      document.getElementById('gameReleaseDate').textContent = game.releaseDate;
-      document.getElementById('gameMode').textContent = game.mode;
-
-      // Reviews
-      const reviewsList = document.getElementById('reviewsList');
-      if (game.reviews && game.reviews.length > 0) {
-        game.reviews.forEach(review => {
-          const reviewCard = document.createElement('li');
-          reviewCard.className = 'review-card';
-          
-          const stars = '★'.repeat(Math.floor(review.rating)) + '☆'.repeat(5 - Math.floor(review.rating));
-          
-          reviewCard.innerHTML = `
-            <div class="review-header">
-              <span class="review-user">${review.user}</span>
-              <span class="review-rating">${stars} ${review.rating.toFixed(1)}</span>
-            </div>
-            <p class="review-text">${review.text}</p>
-            <span class="review-date">${review.date}</span>
-          `;
-          reviewsList.appendChild(reviewCard);
-        });
-      } else {
-        reviewsList.innerHTML = '<p class="no-reviews">Ainda não há avaliações para este jogo. Seja o primeiro a avaliar!</p>';
-      }
-    } else {
-      // Se o jogo não for encontrado
-      document.querySelector('.game-detail-wrapper').innerHTML = `
-        <div style="text-align: center; padding: 100px 20px;">
-          <h1 style="color: #FAF7EE; font-family: 'Montserrat', sans-serif;">Jogo não encontrado</h1>
-          <p style="color: rgba(250, 247, 238, 0.6); margin-top: 16px;">O jogo solicitado não existe no banco de dados.</p>
-          <a href="index.html" style="display: inline-block; margin-top: 24px; padding: 12px 24px; background: #005541; color: #FAF7EE; text-decoration: none; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 600;">Voltar para Jogos</a>
-        </div>
-      `;
-    }
-  </script>
-</body>
-</html>
+const allGames = [
+  {
+    "id": 1,
+    "title": "The Legend of Zelda: Breath of the Wild",
+    "platform": "Nintendo Switch",
+    "genre": "Aventura / Mundo Aberto",
+    "year": 2017,
+    "rating": 4.8,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Zelda+BOTW",
+    "developer": "Nintendo EPD",
+    "publisher": "Nintendo",
+    "releaseDate": "03 de Março, 2017",
+    "description": "Entre em um mundo de aventura. Viaje através de campos, florestas e picos de montanhas enquanto descobre o que se tornou do reino de Hyrule nesta impressionante aventura em mundo aberto. Explore as vastas paisagens de Hyrule do jeito que você quiser.",
+    "tags": ["Aventura", "Mundo Aberto", "Ação", "Exploração"],
+    "reviews": []
+  },
+  {
+    "id": 2,
+    "title": "The Witcher 3: Wild Hunt",
+    "platform": "PC, PS4, Xbox One",
+    "genre": "RPG",
+    "year": 2015,
+    "rating": 4.9,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Witcher+3",
+    "developer": "CD Projekt Red",
+    "publisher": "CD Projekt",
+    "releaseDate": "19 de Maio, 2015",
+    "description": "Você é Geralt de Rívia, caçador de monstros mercenário. À sua frente está uma guerra dilacerada, invadida por monstros para você caçar, e uma profecia de crianças que pode mudar o mundo. Um dos RPGs mais completos e aclamados de todos os tempos.",
+    "tags": ["RPG", "Mundo Aberto", "Fantasia", "História"],
+    "reviews": []
+  },
+  {
+    "id": 3,
+    "title": "Red Dead Redemption 2",
+    "platform": "PS4, Xbox One, PC",
+    "genre": "Ação / Mundo Aberto",
+    "year": 2018,
+    "rating": 4.8,
+    "mode": "Single Player / Online",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=RDR2",
+    "developer": "Rockstar Studios",
+    "publisher": "Rockstar Games",
+    "releaseDate": "26 de Outubro, 2018",
+    "description": "América, 1899. O fim da era do velho oeste começou. Depois que um roubo dá errado, Arthur Morgan e a gangue Van der Linde são forçados a fugir. Com agentes federais e os melhores caçadores de recompensa no seu encalço, a gangue precisa roubar e lutar para sobreviver.",
+    "tags": ["Ação", "Mundo Aberto", "Faroeste", "Narrativa"],
+    "reviews": []
+  },
+  {
+    "id": 4,
+    "title": "The Last of Us Part I",
+    "platform": "PS3, PS4, PS5, PC",
+    "genre": "Ação / Drama",
+    "year": 2013,
+    "rating": 4.9,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=TLOU",
+    "developer": "Naughty Dog",
+    "publisher": "Sony Interactive Entertainment",
+    "releaseDate": "14 de Junho, 2013",
+    "description": "Em uma civilização devastada, onde infectados e endurecidos sobreviventes campam, Joel, um protagonista abatido, é contratado para contrabandear Ellie, uma garota de 14 anos, para fora de uma zona de quarentena opressiva. Uma jornada que mudará suas vidas para sempre.",
+    "tags": ["Ação", "Sobrevivência", "Narrativa", "Pós-apocalíptico"],
+    "reviews": []
+  },
+  {
+    "id": 5,
+    "title": "Grand Theft Auto V",
+    "platform": "Multi-plataforma",
+    "genre": "Ação / Sandbox",
+    "year": 2013,
+    "rating": 4.7,
+    "mode": "Single Player / Online",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=GTA+V",
+    "developer": "Rockstar North",
+    "publisher": "Rockstar Games",
+    "releaseDate": "17 de Setembro, 2013",
+    "description": "Quando um jovem ladrão de rua, um assaltante de bancos aposentado e um psicopata aterrorizante se envolvem com as coisas mais assustadoras e insanas do submundo do crime, do governo dos EUA e da indústria do entretenimento, eles devem realizar uma série de assaltos perigosos para sobreviver em uma cidade implacável.",
+    "tags": ["Ação", "Mundo Aberto", "Crime", "Sandbox"],
+    "reviews": []
+  },
+  {
+    "id": 6,
+    "title": "Minecraft",
+    "platform": "Multi-plataforma",
+    "genre": "Sandbox / Criativo",
+    "year": 2011,
+    "rating": 4.6,
+    "mode": "Single Player / Multiplayer",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Minecraft",
+    "developer": "Mojang Studios",
+    "publisher": "Mojang Studios / Microsoft",
+    "releaseDate": "18 de Novembro, 2011",
+    "description": "Minecraft é um jogo sobre colocar blocos e fazer aventuras. Explore mundos gerados aleatoriamente e construa coisas incríveis, desde a mais simples das casas até o mais grandioso dos castelos. Jogue no modo criativo com recursos ilimitados ou mine profundamente no modo sobrevivência.",
+    "tags": ["Sandbox", "Criatividade", "Sobrevivência", "Construção"],
+    "reviews": []
+  },
+  {
+    "id": 7,
+    "title": "Dark Souls",
+    "platform": "Multi-plataforma",
+    "genre": "RPG / Ação",
+    "year": 2011,
+    "rating": 4.7,
+    "mode": "Single Player / Online",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Dark+Souls",
+    "developer": "FromSoftware",
+    "publisher": "Bandai Namco",
+    "releaseDate": "22 de Setembro, 2011",
+    "description": "Dark Souls é um RPG de ação sombrio e fantasia que coloca você em um mundo rico e detalhado. Com uma jogabilidade desafiadora e uma atmosfera opressiva, este jogo criou um novo gênero: o 'soulslike'.",
+    "tags": ["RPG", "Souls-like", "Desafiador", "Fantasia Sombria"],
+    "reviews": []
+  },
+  {
+    "id": 8,
+    "title": "Elden Ring",
+    "platform": "Multi-plataforma",
+    "genre": "RPG / Mundo Aberto",
+    "year": 2022,
+    "rating": 4.8,
+    "mode": "Single Player / Online",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Elden+Ring",
+    "developer": "FromSoftware",
+    "publisher": "Bandai Namco",
+    "releaseDate": "25 de Fevereiro, 2022",
+    "description": "O novo RPG de fantasia de ação da FromSoftware. Levante-se, Maculado, e seja guiado pela graça para portar o poder do Anel Prístino e se tornar um Lorde Prístino nas Terras Intermediárias. Uma aventura épica em mundo aberto.",
+    "tags": ["RPG", "Mundo Aberto", "Souls-like", "Fantasia"],
+    "reviews": []
+  },
+  {
+    "id": 9,
+    "title": "Super Mario Odyssey",
+    "platform": "Nintendo Switch",
+    "genre": "Plataforma / Aventura",
+    "year": 2017,
+    "rating": 4.8,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Mario+Odyssey",
+    "developer": "Nintendo EPD",
+    "publisher": "Nintendo",
+    "releaseDate": "27 de Outubro, 2017",
+    "description": "Junte-se ao Mario em uma aventura 3D massiva ao redor do mundo e use suas habilidades incríveis para coletar Luas e salvar a Princesa Peach de Bowser. Explore reinos incríveis e descubra trajes que darão ao Mario novas surpresas.",
+    "tags": ["Plataforma", "Aventura", "Família", "Colorido"],
+    "reviews": []
+  },
+  {
+    "id": 10,
+    "title": "God of War",
+    "platform": "PS4, PC",
+    "genre": "Ação / Mitologia",
+    "year": 2018,
+    "rating": 4.9,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=God+of+War",
+    "developer": "Santa Monica Studio",
+    "publisher": "Sony Interactive Entertainment",
+    "releaseDate": "20 de Abril, 2018",
+    "description": "Sua vingança contra os deuses do Olimpo ficou no passado. Kratos agora vive como um homem no reino dos deuses e monstros nórdicos. É neste mundo duro e implacável que ele deve lutar para sobreviver e ensinar seu filho a fazer o mesmo.",
+    "tags": ["Ação", "Mitologia", "Narrativa", "Aventura"],
+    "reviews": []
+  },
+  {
+    "id": 11,
+    "title": "Half-Life 2",
+    "platform": "PC",
+    "genre": "FPS",
+    "year": 2004,
+    "rating": 4.9,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Half+Life+2",
+    "developer": "Valve",
+    "publisher": "Valve",
+    "releaseDate": "16 de Novembro, 2004",
+    "description": "Gordon Freeman retorna para liderar a resistência contra a aliança Combine. Revolucionou a física e a narrativa nos jogos de tiro em primeira pessoa, definindo novos padrões para o gênero.",
+    "tags": ["FPS", "Ficção Científica", "Narrativa", "Clássico"],
+    "reviews": []
+  },
+  {
+    "id": 12,
+    "title": "Fortnite",
+    "platform": "Multi-plataforma",
+    "genre": "Battle Royale",
+    "year": 2017,
+    "rating": 4.3,
+    "mode": "Multiplayer / Online",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Fortnite",
+    "developer": "Epic Games",
+    "publisher": "Epic Games",
+    "releaseDate": "21 de Julho, 2017",
+    "description": "Um fenômeno cultural global. Pule do ônibus de batalha e seja o último jogador de pé em um jogo de ação Battle Royale de 100 jogadores com construção rápida e destrutível.",
+    "tags": ["Battle Royale", "Construção", "Multiplayer", "Competitivo"],
+    "reviews": []
+  },
+  {
+    "id": 13,
+    "title": "Super Mario 64",
+    "platform": "Nintendo 64",
+    "genre": "Plataforma 3D",
+    "year": 1996,
+    "rating": 4.8,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Mario+64",
+    "developer": "Nintendo EAD",
+    "publisher": "Nintendo",
+    "releaseDate": "23 de Junho, 1996",
+    "description": "Mario faz sua primeira aparição no Nintendo 64 com 'Super Mario 64', um revolucionário jogo de plataforma 3D que definiu o gênero e influenciou gerações de jogos futuros.",
+    "tags": ["Plataforma", "3D", "Clássico", "Pioneiro"],
+    "reviews": []
+  },
+  {
+    "id": 14,
+    "title": "The Legend of Zelda: Ocarina of Time",
+    "platform": "Nintendo 64",
+    "genre": "Aventura",
+    "year": 1998,
+    "rating": 5.0,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Ocarina",
+    "developer": "Nintendo EAD",
+    "publisher": "Nintendo",
+    "releaseDate": "21 de Novembro, 1998",
+    "description": "Frequentemente citado como o melhor jogo já feito, Ocarina of Time levou Link para um mundo 3D épico onde a viagem no tempo e os dungeons memoráveis definiram um legado eterno.",
+    "tags": ["Aventura", "Ação", "Fantasia", "Clássico"],
+    "reviews": []
+  },
+  {
+    "id": 15,
+    "title": "Metal Gear Solid 3: Snake Eater",
+    "platform": "PS2",
+    "genre": "Stealth / Ação",
+    "year": 2004,
+    "rating": 4.8,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=MGS3",
+    "developer": "Konami",
+    "publisher": "Konami",
+    "releaseDate": "17 de Novembro, 2004",
+    "description": "Uma obra-prima de stealth e narrativa cinematográfica. Snake enfrenta seu mentor em uma história emocionalmente complexa ambientada na Guerra Fria, com gameplay tático e memorável.",
+    "tags": ["Stealth", "Ação", "Narrativa", "Tático"],
+    "reviews": []
+  },
+  {
+    "id": 16,
+    "title": "Persona 5 Royal",
+    "platform": "PS4, PC, Switch",
+    "genre": "RPG",
+    "year": 2019,
+    "rating": 4.9,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Persona+5",
+    "developer": "Atlus",
+    "publisher": "Atlus / Sega",
+    "releaseDate": "31 de Outubro, 2019",
+    "description": "Um RPG japonês estiloso sobre um grupo de estudantes do ensino médio que se tornam os Phantom Thieves, mudando os corações de adultos corruptos. Com sistema de combate envolvente e visual único.",
+    "tags": ["RPG", "JRPG", "Turnos", "História"],
+    "reviews": []
+  },
+  {
+    "id": 17,
+    "title": "Bloodborne",
+    "platform": "PS4",
+    "genre": "Ação / RPG",
+    "year": 2015,
+    "rating": 4.8,
+    "mode": "Single Player / Online",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Bloodborne",
+    "developer": "FromSoftware",
+    "publisher": "Sony Interactive Entertainment",
+    "releaseDate": "24 de Março, 2015",
+    "description": "Uma cidade gótica vitoriana amaldiçoada com uma doença endêmica. Enfrente bestas aterrorizantes e descubra os segredos sombrios de Yharnam neste exclusivo cultuado do PlayStation.",
+    "tags": ["Ação", "RPG", "Gótico", "Horror"],
+    "reviews": []
+  },
+  {
+    "id": 18,
+    "title": "The Elder Scrolls V: Skyrim",
+    "platform": "Multi-plataforma",
+    "genre": "RPG / Mundo Aberto",
+    "year": 2011,
+    "rating": 4.7,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Skyrim",
+    "developer": "Bethesda Game Studios",
+    "publisher": "Bethesda Softworks",
+    "releaseDate": "11 de Novembro, 2011",
+    "description": "Dragões retornaram a Tamriel e apenas o Dragonborn pode detê-los. Explore um mundo imenso e imersivo, repleto de dungeons, cidades e infinitas possibilidades de customização.",
+    "tags": ["RPG", "Mundo Aberto", "Fantasia", "Exploração"],
+    "reviews": []
+  },
+  {
+    "id": 19,
+    "title": "Overwatch",
+    "platform": "Multi-plataforma",
+    "genre": "FPS / Online",
+    "year": 2016,
+    "rating": 4.5,
+    "mode": "Multiplayer / Online",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Overwatch",
+    "developer": "Blizzard Entertainment",
+    "publisher": "Blizzard Entertainment",
+    "releaseDate": "24 de Maio, 2016",
+    "description": "Um shooter de heróis em equipe que popularizou o gênero hero shooter. Escolha entre dezenas de heróis com habilidades únicas e lute em batalhas 6v6 frenéticas e estratégicas.",
+    "tags": ["FPS", "Hero Shooter", "Competitivo", "Equipe"],
+    "reviews": []
+  },
+  {
+    "id": 20,
+    "title": "Counter-Strike: Global Offensive",
+    "platform": "PC",
+    "genre": "FPS / Competitivo",
+    "year": 2012,
+    "rating": 4.6,
+    "mode": "Multiplayer / Online",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=CS+GO",
+    "developer": "Valve / Hidden Path Entertainment",
+    "publisher": "Valve",
+    "releaseDate": "21 de Agosto, 2012",
+    "description": "O clássico FPS tático que domina o cenário competitivo mundial. Terroristas vs. Contra-Terroristas em partidas de alto risco que exigem precisão, estratégia e trabalho em equipe.",
+    "tags": ["FPS", "Tático", "Competitivo", "eSports"],
+    "reviews": []
+  },
+  {
+    "id": 21,
+    "title": "League of Legends",
+    "platform": "PC",
+    "genre": "MOBA",
+    "year": 2009,
+    "rating": 4.4,
+    "mode": "Multiplayer / Online",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=LoL",
+    "developer": "Riot Games",
+    "publisher": "Riot Games",
+    "releaseDate": "27 de Outubro, 2009",
+    "description": "O maior MOBA do mundo. Escolha seu campeão, domine sua lane e destrua o Nexus inimigo em batalhas 5v5 que revolucionaram o cenário competitivo mundial.",
+    "tags": ["MOBA", "Estratégia", "Competitivo", "eSports"],
+    "reviews": []
+  },
+  {
+    "id": 22,
+    "title": "Super Smash Bros. Ultimate",
+    "platform": "Nintendo Switch",
+    "genre": "Luta",
+    "year": 2018,
+    "rating": 4.8,
+    "mode": "Single Player / Multiplayer",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Smash+Ultimate",
+    "developer": "Bandai Namco / Sora Ltd.",
+    "publisher": "Nintendo",
+    "releaseDate": "07 de Dezembro, 2018",
+    "description": "Todos estão aqui! O maior crossover de lutadores da história dos games reúne todos os personagens da franquia em um só jogo épico com conteúdo infinito.",
+    "tags": ["Luta", "Party", "Multiplayer", "Crossover"],
+    "reviews": []
+  },
+  {
+    "id": 23,
+    "title": "Resident Evil 4",
+    "platform": "Multi-plataforma",
+    "genre": "Terror / Ação",
+    "year": 2005,
+    "rating": 4.8,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=RE4",
+    "developer": "Capcom",
+    "publisher": "Capcom",
+    "releaseDate": "11 de Janeiro, 2005",
+    "description": "Leon S. Kennedy é enviado para resgatar a filha do presidente em uma vila rural europeia. O jogo que reinventou o survival horror com câmera sobre o ombro e ação intensa.",
+    "tags": ["Terror", "Ação", "Survival", "Clássico"],
+    "reviews": []
+  },
+  {
+    "id": 24,
+    "title": "Pokémon Red / Blue",
+    "platform": "Game Boy",
+    "genre": "RPG",
+    "year": 1996,
+    "rating": 4.7,
+    "mode": "Single Player / Multiplayer",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Pokemon+RB",
+    "developer": "Game Freak",
+    "publisher": "Nintendo",
+    "releaseDate": "27 de Fevereiro, 1996",
+    "description": "O início da maior franquia multimídia do mundo dos games. Capture, treine e batalhe com Pokémon para se tornar o melhor treinador de todos.",
+    "tags": ["RPG", "Aventura", "Colecionável", "Clássico"],
+    "reviews": []
+  },
+  {
+    "id": 25,
+    "title": "Tetris",
+    "platform": "Multi-plataforma",
+    "genre": "Puzzle",
+    "year": 1984,
+    "rating": 4.6,
+    "mode": "Single Player / Multiplayer",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Tetris",
+    "developer": "Alexey Pajitnov",
+    "publisher": "Vários",
+    "releaseDate": "06 de Junho, 1984",
+    "description": "O puzzle mais icônico de todos os tempos. Organize blocos que caem para limpar linhas neste clássico atemporal jogado há décadas.",
+    "tags": ["Puzzle", "Clássico", "Arcade", "Atemporal"],
+    "reviews": []
+  },
+  {
+    "id": 26,
+    "title": "Super Mario Bros.",
+    "platform": "NES",
+    "genre": "Plataforma",
+    "year": 1985,
+    "rating": 4.8,
+    "mode": "Single Player / 2 Players",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=SMB",
+    "developer": "Nintendo",
+    "publisher": "Nintendo",
+    "releaseDate": "13 de Setembro, 1985",
+    "description": "O jogo que salvou a indústria dos videogames. Mario e Luigi embarcam em uma aventura para resgatar a Princesa Peach do vilão Bowser no Reino dos Cogumelos.",
+    "tags": ["Plataforma", "Clássico", "Arcade", "Icônico"],
+    "reviews": []
+  },
+  {
+    "id": 27,
+    "title": "DOOM",
+    "platform": "PC",
+    "genre": "FPS",
+    "year": 1993,
+    "rating": 4.7,
+    "mode": "Single Player / Multiplayer",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=DOOM",
+    "developer": "id Software",
+    "publisher": "id Software",
+    "releaseDate": "10 de Dezembro, 1993",
+    "description": "O pioneiro dos jogos de tiro em primeira pessoa. Lute contra demônios do inferno em uma estação espacial marciana com armas poderosas e ação frenética.",
+    "tags": ["FPS", "Ação", "Clássico", "Horror"],
+    "reviews": []
+  },
+  {
+    "id": 28,
+    "title": "Chrono Trigger",
+    "platform": "SNES",
+    "genre": "RPG",
+    "year": 1995,
+    "rating": 4.9,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Chrono+Trigger",
+    "developer": "Square",
+    "publisher": "Square",
+    "releaseDate": "11 de Março, 1995",
+    "description": "Uma obra-prima do RPG japonês. Viaje através do tempo para salvar o mundo em uma aventura épica com personagens memoráveis, múltiplos finais e trilha sonora inesquecível.",
+    "tags": ["RPG", "JRPG", "Viagem no Tempo", "Clássico"],
+    "reviews": []
+  },
+  {
+    "id": 29,
+    "title": "Bioshock",
+    "platform": "Multi-plataforma",
+    "genre": "FPS / Narrativo",
+    "year": 2007,
+    "rating": 4.7,
+    "mode": "Single Player",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Bioshock",
+    "developer": "2K Boston / 2K Australia",
+    "publisher": "2K Games",
+    "releaseDate": "21 de Agosto, 2007",
+    "description": "Bem-vindo a Rapture, uma cidade submarina onde uma utopia se transformou em pesadelo. Mistura filosofia, narrativa e jogabilidade de forma brilhante em um FPS único.",
+    "tags": ["FPS", "Narrativa", "Ficção Científica", "Atmosférico"],
+    "reviews": []
+  },
+  {
+    "id": 30,
+    "title": "Genshin Impact",
+    "platform": "Multi-plataforma",
+    "genre": "RPG / Aventura",
+    "year": 2020,
+    "rating": 4.5,
+    "mode": "Single Player / Co-op",
+    "poster": "https://via.placeholder.com/320x480/005541/FAF7EE?text=Genshin",
+    "developer": "miHoYo",
+    "publisher": "miHoYo",
+    "releaseDate": "28 de Setembro, 2020",
+    "description": "Um RPG de ação em mundo aberto gratuito que popularizou o modelo gacha. Explore o mundo fantástico de Teyvat com personagens diversos e combate elementar dinâmico.",
+    "tags": ["RPG", "Mundo Aberto", "Gacha", "Anime"],
+    "reviews": []
+  }
+];
