@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lista - Checkpoint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: #005541; font-family: 'Montserrat', sans-serif; color: #FAF7EE; min-height: 100vh; }
+    .topbar { position: fixed; top: 0; left: 0; width: 100%; height: 64px; background-color: #FAF7EE; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000; }
+    .logo-container { display: flex; align-items: center; gap: 10px; }
+    .logo-img { height: 40px; width: auto; }
+    .site-name { font-family: 'Press Start 2P', cursive; font-size: 15px; color: #005541; letter-spacing: 0.2px; }
+    .nav-container { display: flex; gap: 12px; align-items: center; }
+    .nav-btn { background-color: transparent; color: #005541; border: 2px solid #005541; padding: 10px 24px; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; transition: all 0.3s ease; display: inline-block; user-select: none; }
+    .nav-btn:link, .nav-btn:visited { text-decoration: none; color: #005541; }
+    .nav-btn:hover:not(.active) { background-color: #005541; color: #FAF7EE; transform: translateY(-1px); }
+    .nav-btn:active:not(.active) { color: rgba(250,247,238,0.3); transform: translateY(0); }
+    .nav-btn.active { background-color: #005541; color: #FAF7EE; border-color: #005541; }
+    .content { margin-top: 80px; padding: 20px; max-width: 1400px; margin: 100px auto 50px; padding: 0 40px; }
+    .back-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,215,0,0.15); color: #FFD700; border: 2px solid rgba(255,215,0,0.3); padding: 12px 24px; border-radius: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-bottom: 30px; }
+    .back-btn::before { content: ""; width: 18px; height: 18px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>') no-repeat center; background-size: contain; }
+    .back-btn:hover { background: rgba(255,215,0,0.25); border-color: #FFD700; transform: translateX(-4px); box-shadow: 0 4px 12px rgba(255,215,0,0.2); }
+    .list-header { text-align: center; padding: 40px 20px; margin-bottom: 40px; background: linear-gradient(135deg, #003d2e 0%, #005541 100%); border-radius: 16px; border: 1px solid rgba(250,247,238,0.1); box-shadow: 0 8px 24px rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
+    .list-badge { font-family: 'Press Start 2P', cursive; font-size: 1.1rem; color: #FFD700; text-shadow: 0 0 8px rgba(255,215,0,0.3); margin-bottom: 8px; display: block; background: rgba(255,215,0,0.15); padding: 6px 16px; border-radius: 8px; width: fit-content; margin: 0 auto 12px; border: 1px solid rgba(255,215,0,0.3); }
+    .list-title { font-family: 'Press Start 2P', cursive; font-size: 2.2rem; color: #FAF7EE; margin: 16px 0; line-height: 1.2; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+    .list-creator { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; color: rgba(250,247,238,0.8); margin: 16px 0; font-weight: 500; }
+    .list-stats { display: flex; justify-content: center; gap: 32px; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: rgba(250,247,238,0.7); margin: 24px 0; }
+    .stat-item { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+    .stat-item::before { content: ""; display: inline-block; width: 18px; height: 18px; background-size: contain; background-repeat: no-repeat; }
+    .stat-item:nth-child(1)::before { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'); }
+    .stat-item:nth-child(2)::before { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>'); }
+    .games-section { margin-bottom: 60px; }
+    .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; padding: 0; max-width: 1400px; margin: 0 auto; }
+    .game-card { background: rgba(250,247,238,0.05); border: 1px solid rgba(250,247,238,0.1); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; cursor: pointer; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .game-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(255,215,0,0.1), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; border-radius: 12px; z-index: 1; }
+    .game-card:hover::before { opacity: 1; }
+    .game-card:hover { transform: translateY(-6px); border-color: rgba(255,215,0,0.4); box-shadow: 0 12px 28px rgba(0,0,0,0.4); z-index: 2; }
+    .game-poster { width: 100%; height: 280px; object-fit: cover; transition: transform 0.3s ease; background: #111; display: flex; align-items: center; justify-content: center; color: #666; font-size: 0.9rem; font-family: 'Montserrat', sans-serif; }
+    .game-card:hover .game-poster { transform: scale(1.05); }
+    .game-info { padding: 16px; background: rgba(250,247,238,0.03); border-top: 1px solid rgba(250,247,238,0.1); }
+    .game-title { font-weight: 600; font-size: 1rem; color: #FAF7EE; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .game-year { font-size: 0.8rem; color: rgba(250,247,238,0.6); font-weight: 500; }
+    .no-games { text-align: center; padding: 80px 20px; color: rgba(250,247,238,0.6); font-family: 'Montserrat', sans-serif; font-size: 1.1rem; background: rgba(250,247,238,0.03); border-radius: 12px; border: 1px dashed rgba(250,247,238,0.2); margin: 20px 0; }
+    @media (max-width: 768px) { .content { padding: 0 20px; } .list-title { font-size: 1.8rem; } .games-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; } .game-poster { height: 220px; } }
+    @media (max-width: 480px) { .list-title { font-size: 1.5rem; } .back-btn { padding: 10px 16px; font-size: 13px; } .games-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-container">
+      <img src="logo_checkpoint.png" alt="Checkpoint Logo" class="logo-img">
+      <span class="site-name">CHECKPOINT</span>
+    </div>
+    <nav class="nav-container">
+      <a href="inicio.html" class="nav-btn">Início</a>
+      <a href="index.html" class="nav-btn">Jogos</a>
+      <a href="listas.html" class="nav-btn active">Listas</a>
+      <a href="perfil.html" class="nav-btn">Perfil</a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <button class="back-btn" onclick="window.history.back()">Voltar</button>
+
+    <div class="list-header" id="listHeader"></div>
+
+    <section class="games-section">
+      <div class="games-grid" id="gamesGrid"></div>
+    </section>
+  </main>
+
+  <!-- Importa os dados dos jogos -->
+  <script src="games-data.js"></script>
+
+  <script>
+    // === VARIÁVEIS GLOBAIS ===
+    let listsMemory = [];
+    let currentListId = null;
+
+    // === CARREGA LISTAS DO localStorage ===
+    function loadListsFromStorage() {
+      const stored = localStorage.getItem('checkpoint_lists');
+      if (stored) {
+        try {
+          listsMemory = JSON.parse(stored);
+        } catch (e) {
+          listsMemory = [];
+        }
+      } else {
+        listsMemory = [];
+      }
+    }
+
+    // === CARREGA LISTA ATUAL ===
+    function loadList() {
+      const urlParams = new URLSearchParams(window.location.search);
+      currentListId = parseInt(urlParams.get('id'));
+      
+      if (!currentListId || isNaN(currentListId)) {
+        showError("ID da lista não fornecido ou inválido na URL.");
+        return;
+      }
+
+      loadListsFromStorage();
+
+      if (typeof allGames === 'undefined') {
+        showError("Erro: dados dos jogos não carregados. Tente recarregar a página.");
+        return;
+      }
+
+      const list = listsMemory.find(l => l.id === currentListId);
+      if (!list) {
+        showError(`Lista não encontrada (id=${currentListId}).`);
+        return;
+      }
+
+      // Preenche cabeçalho
+      document.getElementById("listHeader").innerHTML = `
+        ${list.category ? `<span class="list-badge">${list.category}</span>` : ''}
+        <h1 class="list-title">${list.title}</h1>
+        <p class="list-creator">por ${list.creator || 'Você'}</p>
+        <div class="list-stats">
+          <span class="stat-item">${list.likes || 0}</span>
+          <span class="stat-item">${list.games?.length || 0} jogos</span>
+        </div>
+      `;
+
+      const grid = document.getElementById("gamesGrid");
+      grid.innerHTML = '';
+
+      if (!list.games || list.games.length === 0) {
+        grid.innerHTML = '<div class="no-games">Nenhum jogo na lista.</div>';
+        return;
+      }
+
+      const gameIds = list.games.map(g => typeof g === 'object' ? g.id : g).filter(Boolean);
+
+      gameIds.forEach(gameId => {
+        const game = allGames.find(g => g.id === gameId);
+        if (!game) return;
+
+        const card = document.createElement("div");
+        card.className = "game-card";
+        card.dataset.gameId = game.id;
+
+        card.innerHTML = `
+          <div class="game-poster">
+            ${game.poster ? `<img src="${game.poster}" alt="${game.title}" style="width:100%; height:100%; object-fit:cover;">` : 'Sem poster'}
+          </div>
+          <div class="game-info">
+            <div class="game-title">${game.title}</div>
+            <div class="game-year">${game.year}</div>
+          </div>
+        `;
+
+        card.addEventListener('click', () => {
+          window.location.href = `game.html?id=${game.id}`;
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    function showError(message) {
+      const grid = document.getElementById("gamesGrid");
+      grid.innerHTML = `<div class="no-games">${message}</div>`;
+    }
+
+    // === INICIA AO CARREGAR ===
+    window.addEventListener('load', loadList);
+  </script>
+</body>
+</html>
