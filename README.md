@@ -1,13 +1,16 @@
-Divisão de Pastas do projeto no vscode:
-Checkpoint
-|  scripts
-|  |  game.js
-|  |  main.js
-|index.html
-|inicio.html
-|listas.html
-|perfil.html
-|game.html
-|styles.css
-|games-data.js
-|img_logo
+Checkpoint/
+│
+├── scripts/
+│   ├── game.js
+│   └── main.js
+│
+├── logo_checkpoint.png
+│
+├── index.html
+├── inicio.html
+├── listas.html
+├── perfil.html
+├── game.html
+├── page_lista.html
+├── styles.css
+└── games-data.js
