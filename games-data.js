@@ -1,19 +1,18 @@
-// games-data.js
 const allGames = [
 {
     id: 1,
-    title: "BioShock",
-    platform: "PC, Xbox 360, PS3",
-    genre: "FPS / Ação / RPG",
-    year: 2007,
-    rating: 4.9,
-    mode: "Single Player",
-    poster: "imgs/Bloodborne_capa.png",
-    developer: "2K Boston",
-    publisher: "2K Games",
-    releaseDate: "21 de Agosto, 2007",
-    description: "Um shooter diferente de qualquer outro em um mundo submerso único.",
-    tags: ["FPS", "História", "Distopia", "Imersivo"],
+    title: "Mortal Kombat XL",
+    platform: "PC, PlayStation 4, Xbox One",
+    genre: "Luta",
+    year: 2016,
+    rating: 4.7,
+    mode: "Single Player, Multiplayer (Local/Online)",
+    poster: "imgs/MortalKombatXl.jpg",
+    developer: "NetherRealm Studios",
+    publisher: "Warner Bros. Interactive Entertainment",
+    releaseDate: "1 de Março, 2016",
+    description: "A edição definitiva de Mortal Kombat X traz todos os DLCs, novos lutadores e os brutais Fatalities que consagraram a série. Escolha seu combatente e lute até o fim neste torneio sangrento. Com gráficos impressionantes e uma jogabilidade refinada, MK XL oferece modos de história cinematográficos, torres desafiadoras e combates online intensos. Cada personagem possui três variações de estilo de luta, proporcionando profundidade estratégica incomparável.",
+    tags: ["Luta", "Gore", "Multiplayer", "Fatalities", "Competitivo"],
     reviews: []
   },
   {
@@ -28,7 +27,7 @@ const allGames = [
     developer: "2K Boston",
     publisher: "2K Games",
     releaseDate: "21 de Agosto, 2007",
-    description: "Explore a cidade submersa de Rapture...",
+    description: "Explore a cidade submersa de Rapture, uma utopia Art Déco que se transformou em pesadelo. Como Jack, você descobrirá os segredos obscuros desta sociedade construída sob o oceano, enfrentando Splicers deformados e os icônicos Big Daddies. Com poderes genéticos chamados Plasmids e uma narrativa filosófica profunda sobre livre arbítrio, BioShock redefiniu o que um FPS pode ser. Cada escolha moral impacta seu destino neste clássico inesquecível.",
     tags: ["FPS", "RPG", "Distopia", "História"],
     reviews: []
   },
@@ -44,7 +43,7 @@ const allGames = [
     developer: "FromSoftware",
     publisher: "Sony Interactive Entertainment",
     releaseDate: "24 de Março, 2015",
-    description: "Caçador em um mundo gótico cheio de pesadelos...",
+    description: "Caçador em um mundo gótico vitoriano cheio de pesadelos e criaturas lovecraftianas. Bloodborne combina a dificuldade brutal característica da FromSoftware com um combate agressivo e veloz que recompensa ousadia. Explore a cidade de Yharnam durante uma noite de caça eterna, desvende mistérios cósmicos e enfrente chefes monumentais. A atmosfera sombria, design de arte excepcional e trilha sonora orquestral criam uma experiência de horror atmosférico incomparável.",
     tags: ["Ação", "RPG", "Souls-like", "Terror"],
     reviews: []
   },
@@ -60,7 +59,7 @@ const allGames = [
     developer: "Square",
     publisher: "Square",
     releaseDate: "11 de Março, 1995",
-    description: "Viagem no tempo para salvar o futuro...",
+    description: "Viagem no tempo para salvar o futuro em uma das maiores aventuras JRPG já criadas. Crono e seus companheiros atravessam diferentes eras - da pré-história ao futuro distante - para impedir a destruição do mundo. Com múltiplos finais, combate dinâmico baseado em tempo ativo, personagens memoráveis desenhados por Akira Toriyama e uma trilha sonora lendária de Yasunori Mitsuda, Chrono Trigger transcende gerações como obra-prima atemporal do gênero.",
     tags: ["RPG", "Viagem no Tempo", "Clássico", "Fantasia"],
     reviews: []
   },
@@ -76,7 +75,7 @@ const allGames = [
     developer: "Valve / Hidden Path",
     publisher: "Valve",
     releaseDate: "21 de Agosto, 2012",
-    description: "Jogo de tiro tático competitivo...",
+    description: "Jogo de tiro tático competitivo que dominou o cenário de eSports por mais de uma década. Terroristas e contra-terroristas se enfrentam em partidas estratégicas onde comunicação, pontaria e economia são fundamentais. Com mapas icônicos como Dust2, Mirage e Inferno, CS:GO oferece uma curva de aprendizado íngreme mas recompensadora. Sistema de skins e mercado robusto, atualização constante e uma cena competitiva vibrante mantêm o jogo relevante anos após seu lançamento.",
     tags: ["FPS", "Multiplayer", "Competitivo", "Tático"],
     reviews: []
   },
@@ -92,7 +91,7 @@ const allGames = [
     developer: "FromSoftware",
     publisher: "Bandai Namco",
     releaseDate: "22 de Setembro, 2011",
-    description: "Um mundo sombrio e desafiador...",
+    description: "Um mundo sombrio e desafiador onde cada morte é uma lição. Dark Souls revolucionou os jogos de ação com seu design de níveis interconectado, combate metodológico e narrativa ambiental críptica. Como um morto-vivo amaldiçoado, você atravessa o reino de Lordran, enfrentando chefes lendários e desvendando lore profunda. A sensação de conquista após derrotar um boss é incomparável. Multiplayer inovador permite invasões, cooperação e mensagens entre jogadores.",
     tags: ["RPG", "Souls-like", "Desafiador", "Fantasia Sombria"],
     reviews: []
   },
@@ -108,7 +107,7 @@ const allGames = [
     developer: "FromSoftware",
     publisher: "Bandai Namco",
     releaseDate: "25 de Fevereiro, 2022",
-    description: "Um vasto mundo aberto criado por Hidetaka Miyazaki e George R. R. Martin...",
+    description: "Um vasto mundo aberto criado por Hidetaka Miyazaki e George R. R. Martin que redefine o gênero Souls-like. As Terras Intermédias oferecem exploração épica com liberdade sem precedentes, calabouços elaborados, chefes opcionais e segredos ocultos em cada canto. Monte Torrent, invoque espíritos, domine magias e armas lendárias enquanto busca se tornar o Lorde Elden. A escala épica, world-building rico e combate refinado criaram um dos jogos mais aclamados da década.",
     tags: ["RPG", "Mundo Aberto", "Souls-like", "Fantasia"],
     reviews: []
   },
@@ -124,7 +123,7 @@ const allGames = [
     developer: "Epic Games",
     publisher: "Epic Games",
     releaseDate: "25 de Julho, 2017",
-    description: "Construa, lute e sobreviva em batalhas épicas...",
+    description: "Construa, lute e sobreviva em batalhas épicas de 100 jogadores. Fortnite revolucionou o gênero battle royale com mecânicas de construção únicas que elevam o skill ceiling. Cada temporada traz novos temas, armas, veículos e eventos ao vivo que transformam o mapa. Além do battle royale, oferece modos criativos onde jogadores constroem seus próprios mundos. Colaborações com filmes, músicos e marcas fazem de Fortnite um fenômeno cultural além dos jogos.",
     tags: ["Battle Royale", "Multiplayer", "Construção", "Ação"],
     reviews: []
   },
@@ -140,7 +139,7 @@ const allGames = [
     developer: "miHoYo",
     publisher: "miHoYo",
     releaseDate: "28 de Setembro, 2020",
-    description: "Explore o mundo de Teyvat em busca do seu irmão perdido...",
+    description: "Explore o mundo de Teyvat em busca do seu irmão perdido neste RPG gacha de mundo aberto deslumbrante. Com sistema de elementos, você alterna entre personagens únicos em combates dinâmicos, criando combos elementais devastadores. Cada região (Mondstadt, Liyue, Inazuma, Sumeru) possui cultura, arquitetura e música distintas inspiradas em civilizações reais. Atualizações frequentes expandem a história épica, adicionam novos personagens e exploram temas filosóficos profundos sobre destino e livre arbítrio.",
     tags: ["RPG", "Mundo Aberto", "Gacha", "Aventura"],
     reviews: []
   },
@@ -156,7 +155,7 @@ const allGames = [
     developer: "Santa Monica Studio",
     publisher: "Sony Interactive Entertainment",
     releaseDate: "20 de Abril, 2018",
-    description: "Kratos e seu filho Atreus em uma jornada épica...",
+    description: "Kratos e seu filho Atreus em uma jornada épica pela mitologia nórdica. Reinventando a franquia, este God of War apresenta câmera única sem cortes, combate tático com o machado Leviatã e uma narrativa madura sobre paternidade e redenção. A relação pai-filho evolui organicamente enquanto exploram os nove reinos, enfrentam deuses e criaturas nórdicas, e desvendam profecias sobre Ragnarok. Performance de captura de movimento excepcional e direção cinematográfica elevam a narrativa a níveis hollywoodianos.",
     tags: ["Ação", "Aventura", "Mitologia", "Narrativa"],
     reviews: []
   },
@@ -172,7 +171,7 @@ const allGames = [
     developer: "Valve",
     publisher: "Valve",
     releaseDate: "16 de Novembro, 2004",
-    description: "Gordon Freeman retorna para enfrentar a Combine...",
+    description: "Gordon Freeman retorna para enfrentar a Combine em uma das campanhas FPS mais revolucionárias já criadas. A Source Engine trouxe física realista que integra puzzles ambientais ao gameplay - use a Gravity Gun para manipular objetos e transformar detritos em armas. A opressiva City 17 estabelece atmosfera distópica magistral, enquanto personagens como Alyx Vance trazem humanidade à resistência. Narrativa ambiental, level design impecável e setpieces memoráveis definiram o padrão para FPS narrativos.",
     tags: ["FPS", "História", "Sci-Fi", "Clássico"],
     reviews: []
   },
@@ -188,7 +187,7 @@ const allGames = [
     developer: "Konami",
     publisher: "Konami",
     releaseDate: "17 de Novembro, 2004",
-    description: "Operação Snake Eater na Guerra Fria...",
+    description: "Operação Snake Eater na Guerra Fria - a origem de Big Boss. Infiltre-se na selva soviética em 1964 com mecânicas de sobrevivência revolucionárias: caça de animais, camuflagem dinâmica e tratamento de ferimentos. A narrativa cinematográfica de Hideo Kojima atinge seu ápice com temas de lealdade, traição e o sacrifício de soldados. Boss fights icônicos (The End, The Fury, The Boss) desafiam criativamente.",
     tags: ["Stealth", "Ação", "Espionagem", "Narrativa"],
     reviews: []
   },
@@ -204,7 +203,7 @@ const allGames = [
     developer: "Mojang Studios",
     publisher: "Mojang Studios / Microsoft",
     releaseDate: "18 de Novembro, 2011",
-    description: "Construa e explore mundos infinitos...",
+    description: "Construa e explore mundos infinitos de blocos em um dos jogos mais influentes de todos os tempos. Minecraft é um canvas em branco onde criatividade não tem limites - construa castelos medievais, cidades futuristas, circuitos de redstone complexos ou recrie obras famosas. Modo sobrevivência oferece progressão satisfatória: mine recursos, enfrente mobs, explore biomas diversos, derrote o Ender Dragon. Comunidade massiva cria mods, mapas customizados e servidores temáticos, expandindo infinitamente as possibilidades.",
     tags: ["Sandbox", "Criatividade", "Sobrevivência", "Construção"],
     reviews: []
   },
@@ -220,7 +219,7 @@ const allGames = [
     developer: "Blizzard Entertainment",
     publisher: "Blizzard Entertainment",
     releaseDate: "24 de Maio, 2016",
-    description: "Heróis em batalhas por equipes...",
+    description: "Heróis em batalhas por equipes que revolucionaram o gênero de hero shooters. Escolha entre 30+ heróis únicos divididos em Tank, DPS e Suporte - cada um com habilidades distintas e ultimates devastadores. Trabalho em equipe e composição são cruciais para conquistar objetivos em mapas diversos. A Blizzard trouxe seu polish característico com personagens carismáticos, cinematics animados de qualidade Pixar e um universo rico que inspira paixão na comunidade. Atualizações constantes mantêm o meta dinâmico.",
     tags: ["FPS", "Multiplayer", "Heróis", "Competitivo"],
     reviews: []
   },
@@ -236,7 +235,7 @@ const allGames = [
     developer: "Atlus",
     publisher: "Atlus",
     releaseDate: "31 de Outubro, 2019",
-    description: "Ladrões Fantasmas mudam corações corruptos...",
+    description: "Ladrões Fantasmas mudam corações corruptos em Tóquio neste JRPG estiloso definitivo. De dia, você é um estudante do colegial gerenciando relacionamentos sociais; à noite, infiltra Palácios metafísicos para roubar desejos distorcidos. O sistema de combate turn-based com Personas (manifestações psicológicas) é profundo e estratégico. Interface UI vermelha e preta icônica, trilha sonora jazz-acid memorável e mais de 100 horas de conteúdo fazem de P5R uma experiência completa sobre rebelião contra injustiça social.",
     tags: ["RPG", "Turn-based", "Escola", "Narrativa"],
     reviews: []
   },
@@ -252,7 +251,7 @@ const allGames = [
     developer: "Game Freak",
     publisher: "Nintendo",
     releaseDate: "07 de Setembro, 2004",
-    description: "Remake do clássico Pokémon Red...",
+    description: "Remake do clássico Pokémon Red que introduziu milhões à franquia. Explore a região de Kanto capturando 150+ Pokémon, desafiando líderes de ginásio e desmantelando a Equipe Rocket. FireRed modernizou o original com gráficos aprimorados, mecânicas da terceira geração e as ilhas Sevii pós-game. A fórmula viciante de capturar, treinar e batalhar permanece atemporal. Conectividade com Ruby/Sapphire permitiu completar a Pokédex Nacional, realizando o sonho de se tornar um Mestre Pokémon.",
     tags: ["RPG", "Coleção", "Aventura", "Clássico"],
     reviews: []
   },
@@ -268,7 +267,7 @@ const allGames = [
     developer: "Rockstar Studios",
     publisher: "Rockstar Games",
     releaseDate: "26 de Outubro, 2018",
-    description: "América, 1899. O fim da era dos fora-da-lei...",
+    description: "América, 1899. O fim da era dos fora-da-lei e o início do mundo moderno. Arthur Morgan, braço direito da gangue Van der Linde, luta pela sobrevivência enquanto agentes federais perseguem os últimos bandidos. RDR2 é uma obra-prima técnica e narrativa - cada NPC tem rotina diária, animais reagem realisticamente, o clima afeta gameplay. A jornada de redenção de Arthur é profundamente emocional, explorando temas de lealdade, moralidade e o custo da civilização. Um dos mundos abertos mais imersivos já criados.",
     tags: ["Ação", "Mundo Aberto", "Faroeste", "Narrativa"],
     reviews: []
   },
@@ -284,7 +283,7 @@ const allGames = [
     developer: "Capcom",
     publisher: "Capcom",
     releaseDate: "11 de Janeiro, 2005",
-    description: "Leon S. Kennedy resgata a filha do presidente...",
+    description: "Leon S. Kennedy resgata a filha do presidente em uma vila europeia infectada pelo parasita Las Plagas. RE4 revolucionou o survival horror ao trocar ângulos fixos por câmera sobre o ombro, criando tensão cinematográfica. Recursos limitados forçam decisões estratégicas enquanto enfrenta Ganados agressivos e chefes memoráveis. Sistema de melhoria de armas, organização de inventário tipo maleta e QTEs em cutscenes definiram tendências. O equilíbrio perfeito entre ação e horror influenciou inúmeros jogos posteriores.",
     tags: ["Survival Horror", "Ação", "Tiro", "Clássico"],
     reviews: []
   },
@@ -300,7 +299,7 @@ const allGames = [
     developer: "Nintendo EAD",
     publisher: "Nintendo",
     releaseDate: "23 de Junho, 1996",
-    description: "Mario coleta estrelas no castelo da Peach...",
+    description: "Mario coleta estrelas no castelo da Peach neste marco revolucionário dos jogos 3D. SM64 estabeleceu a linguagem de controle para plataformas tridimensionais - movimento analógico preciso, câmera intuitiva e moveset expansivo (salto triplo, wall kick, ground pound). Quinze mundos temáticos oferecem 120 estrelas para coletar através de objetivos variados. O design de níveis não-linear permite exploração livre. Mesmo décadas depois, a física e controles responsivos de Mario 64 permanecem referência de excelência.",
     tags: ["Plataforma", "3D", "Aventura", "Clássico"],
     reviews: []
   },
@@ -312,11 +311,11 @@ const allGames = [
     year: 1985,
     rating: 4.7,
     mode: "Single Player",
-    poster: "imgs/Super Mario Bros..jpg",
+    poster: "imgs/SuperMarioBros.jpg",
     developer: "Nintendo R&D4",
     publisher: "Nintendo",
     releaseDate: "13 de Setembro, 1985",
-    description: "Mario resgata a princesa do Bowser...",
+    description: "Mario resgata a princesa Peach do Bowser no jogo que salvou a indústria de videogames após o crash de 1983. Super Mario Bros. definiu o gênero de plataforma com level design magistral - cada fase ensina mecânicas organicamente sem tutoriais. Cogumelos, flores de fogo, estrelas e canos secretos criam progressão satisfatória através de 8 mundos. A trilha sonora icônica de Koji Kondo é reconhecida mundialmente. Simples de aprender mas difícil de masterizar, SMB permanece tão divertido hoje quanto em 1985.",
     tags: ["Plataforma", "2D", "Clássico", "Arcade"],
     reviews: []
   },
@@ -332,7 +331,7 @@ const allGames = [
     developer: "Nintendo EPD",
     publisher: "Nintendo",
     releaseDate: "27 de Outubro, 2017",
-    description: "Mario viaja pelo mundo com Cappy...",
+    description: "Mario viaja pelo mundo com Cappy, seu chapéu mágico que permite capturar inimigos e objetos. Odyssey é sandbox puro - explore reinos temáticos vastos (New Donk City metropolitana, deserto gelado, floresta gastronômica) coletando centenas de Power Moons. A mecânica de captura revoluciona puzzles e combate: possua T-Rex, Bullet Bills ou até tijolos. Movimento é espetacularmente fluido combinando técnicas clássicas com novas acrobacias. Boss fights criativos, trilha sonora jazz memorável e conteúdo pós-game extenso celebram 30 anos de Mario.",
     tags: ["Plataforma", "3D", "Aventura", "Exploração"],
     reviews: []
   },
@@ -348,7 +347,7 @@ const allGames = [
     developer: "Bandai Namco / Sora Ltd.",
     publisher: "Nintendo",
     releaseDate: "07 de Dezembro, 2018",
-    description: "Todos os lutadores da série reunidos...",
+    description: "Todos os lutadores da série reunidos - 80+ personagens de toda história dos videogames. Ultimate é celebração suprema da cultura gamer: Mario enfrenta Sonic, Link batalha Cloud, Pikachu versus Pac-Man. Mecânicas acessíveis mascaram profundidade competitiva imensa. Centenas de estágios, 1000+ músicas remixadas e modos como World of Light oferecem conteúdo infinito. O balanceamento constante de Sakurai mantém torneios emocionantes. Smash Ultimate transcende gênero de luta sendo festa caótica ou competição esportiva dependendo do modo.",
     tags: ["Luta", "Multiplayer", "Crossover", "Competitivo"],
     reviews: []
   },
@@ -364,7 +363,7 @@ const allGames = [
     developer: "Alexey Pajitnov",
     publisher: "Vários",
     releaseDate: "06 de Junho, 1984",
-    description: "Empilhe blocos para limpar linhas...",
+    description: "Empilhe blocos para limpar linhas no puzzle mais icônico e viciante já criado. A genialidade de Tetris reside em sua simplicidade perfeita - sete formatos de tetrominós, quatro movimentos, um objetivo. Mas dominar as técnicas avançadas (T-spins, back-to-back combos) requer anos. O loop de gameplay é matematicamente projetado para criar flow state. Atravessando 40 anos e incontáveis plataformas, Tetris prova que design elegante é atemporal. A música tema russa 'Korobeiniki' é tão icônica quanto o jogo.",
     tags: ["Puzzle", "Clássico", "Arcade", "Casual"],
     reviews: []
   },
@@ -380,7 +379,7 @@ const allGames = [
     developer: "Nintendo EAD",
     publisher: "Nintendo",
     releaseDate: "21 de Novembro, 1998",
-    description: "Link viaja no tempo para salvar Hyrule...",
+    description: "Link viaja no tempo para salvar Hyrule do maligno Ganondorf neste épico de aventura 3D que redefiniu um gênero. Ocarina of Time estabeleceu Z-targeting (lock-on em combate), contextual button actions e dungeons elaborados como padrão para action-adventures. Alternar entre criança e adulto resolve puzzles criativos através de duas versões temporais de Hyrule. A ocarina controla tempo, convoca cavalo Epona e toca melodias místicas. Boss battles memoráveis, sidequests envolventes e narrativa épica sobre crescimento e sacrifício criaram lenda atemporal.",
     tags: ["Aventura", "Ação", "Fantasia", "Clássico"],
     reviews: []
   },
@@ -396,7 +395,7 @@ const allGames = [
     developer: "CD Projekt Red",
     publisher: "CD Projekt",
     releaseDate: "19 de Maio, 2015",
-    description: "Caçador de monstros em um mundo aberto...",
+    description: "Caçador de monstros em um mundo aberto de fantasia sombria repleto de escolhas morais complexas. Geralt de Rivia busca Ciri, sua pupila adotiva, enquanto enfrenta a Wild Hunt espectral. TW3 eleva RPGs com quests que não têm certo ou errado absoluto - cada decisão tem consequências imprevistas que afetam reinos inteiros. Combate tático exige preparo com poções, óleos e sinais mágicos. Velen sombrio, Novigrad cosmopolita e Skellige viking criam mundo vivo e crível. DLCs Hearts of Stone e Blood & Wine são expansões dignas de jogos completos.",
     tags: ["RPG", "Mundo Aberto", "Fantasia", "História"],
     reviews: []
   },
@@ -412,7 +411,7 @@ const allGames = [
     developer: "Bethesda Game Studios",
     publisher: "Bethesda Softworks",
     releaseDate: "11 de Novembro, 2011",
-    description: "Você é o Dragonborn em Skyrim...",
+    description: "Você é o Dragonborn em Skyrim - nórdico profetizado capaz de absorver almas de dragões. Explore a província congelada repleta de masmorras antigas, ruínas nórdicas e cidades muradas. Liberdade total define Skyrim: seja guerreiro, mago, ladrão, ou tudo ao mesmo tempo. Questlines de guildas (Dark Brotherhood, Thieves Guild, Companions) são aventuras épicas por si só. Sistema de crafting profundo permite forjar armas lendárias. Mods da comunidade expandiram Skyrim infinitamente, tornando-o o RPG mais rejogável da história com literalmente milhares de horas de conteúdo.",
     tags: ["Mundo Aberto", "RPG", "Fantasia", "Exploração"],
     reviews: []
   },
@@ -428,7 +427,7 @@ const allGames = [
     developer: "id Software",
     publisher: "id Software",
     releaseDate: "10 de Dezembro, 1993",
-    description: "Mate demônios em Marte...",
+    description: "Mate demônios em Marte neste FPS revolucionário que definiu o gênero. DOOM popularizou multiplayer deathmatch e level design labiríntico não-linear. Como space marine, você destrói hordas infernais com arsenal icônico: shotgun, chainsaw, BFG 9000. A engine revolucionária permitiu gráficos pseudo-3D sem precedentes em 1993. Nível de violência chocou pais mas empolgou gamers - movimento rápido, carnificina constante e power-ups estratégicos criaram fórmula viciante. Modding ativo mantém DOOM relevante 30 anos depois, provando gameplay sólido transcende gráficos.",
     tags: ["FPS", "Clássico", "Ação", "Violência"],
     reviews: []
   },
@@ -444,7 +443,7 @@ const allGames = [
     developer: "Rockstar North",
     publisher: "Rockstar Games",
     releaseDate: "17 de Setembro, 2013",
-    description: "Três criminosos em Los Santos...",
+    description: "Três criminosos em Los Santos vivem o sonho americano através do crime organizado. Michael (ex-assaltante aposentado), Franklin (gangster ambicioso) e Trevor (psicopata imprevisível) protagonizam narrativa entrelaçada genialmente. Alterne entre os três durante missões e exploração. Los Santos recria Los Angeles com detalhes obsessivos - faça yoga, jogue golfe, mergulhe, pilote aviões. Assaltos elaborados permitem abordagens múltiplas. GTA Online se tornou fenômeno próprio com atualizações constantes, gerando bilhões e comunidade massiva após uma década.",
     tags: ["Ação", "Mundo Aberto", "Crime", "Sandbox"],
     reviews: []
   },
@@ -460,7 +459,7 @@ const allGames = [
     developer: "Riot Games",
     publisher: "Riot Games",
     releaseDate: "27 de Outubro, 2009",
-    description: "Batalhas 5v5 em Summoner's Rift...",
+    description: "Batalhas 5v5 em Summoner's Rift que dominam o cenário competitivo global. League of Legends popularizou o gênero MOBA com 160+ campeões únicos, cada um com kit de habilidades complexo e estilo distinto. Coordenação de equipe é crucial - controle lanes, farme minions, mate jungle camps, conquiste dragões e Baron Nashor. Meta evolui constantemente através de patches regulares da Riot. Campeonato Mundial atrai milhões de espectadores, oferecendo premiações milionárias. Curva de aprendizado íngreme mas recompensadora mantém jogadores investidos por anos.",
     tags: ["MOBA", "Multiplayer", "Competitivo", "Estratégia"],
     reviews: []
   },
@@ -476,14 +475,11 @@ const allGames = [
     developer: "Naughty Dog",
     publisher: "Sony Interactive Entertainment",
     releaseDate: "02 de Setembro, 2022",
-    description: "Remake do clássico pós-apocalíptico...",
+    description: "Remake do clássico pós-apocalíptico que redefiniu narrativa em videogames. Joel, contrabandista endurecido, escolta Ellie, adolescente imune à infecção fungal que dizimou humanidade. A jornada através da América devastada explora amor paternal, sobrevivência moral e sacrifício. Combate tenso equilibra stealth, recursos escassos e decisões brutais. Performance de Troy Baker e Ashley Johnson traz profundidade cinematográfica. O remake em PS5 oferece gráficos fotorrealistas, acessibilidade expandida e reconstrução de níveis. Uma das histórias mais emocionais e maduras já contadas em videogames.",
     tags: ["Ação", "Sobrevivência", "Narrativa", "Pós-apocalíptico"],
     reviews: []
   }
 ];
-// (Opcional) Exporta para uso com módulos
-// export default allGames;
-
 
 const communityLists = [
   {
