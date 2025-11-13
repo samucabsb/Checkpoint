@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkpoint - Sua Jornada de Jogos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    /* Hero Section Melhorada */
+    .hero-section {
+      position: relative;
+      height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: 64px;
+      background: url('https://via.placeholder.com/1920x1080/001a14/003d2e?text=Hero+Background') no-repeat center/cover;
+      animation: parallax 20s linear infinite;
+    }
+
+    @keyframes parallax {
+      0% { background-position: center top; }
+      50% { background-position: center bottom; }
+      100% { background-position: center top; }
+    }
+
+    .hero-background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 26, 20, 0.6), rgba(0, 85, 65, 0.4));
+      opacity: 0.8;
+      filter: blur(5px);
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      max-width: 900px;
+      padding: 40px;
+      z-index: 2;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 10px 24px;
+      background: rgba(255, 215, 0, 0.25);
+      border: 2px solid #FFD700;
+      border-radius: 50px;
+      color: #FFD700;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    .hero-multiline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.2rem;
+      color: #FAF7EE;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+      margin-bottom: 48px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.4rem;
+      color: rgba(250, 247, 238, 0.85);
+      margin-bottom: 48px;
+      font-weight: 500;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn {
+      padding: 20px 48px;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+    }
+
+    .hero-btn-primary {
+      background: linear-gradient(135deg, #005541 0%, #007556 100%);
+      color: #FAF7EE;
+    }
+
+    .hero-btn-primary:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 12px 32px rgba(0, 85, 65, 0.5);
+    }
+
+    .hero-btn-secondary {
+      background: rgba(250, 247, 238, 0.15);
+      border: 2px solid rgba(250, 247, 238, 0.4);
+      color: #FAF7EE;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-btn-secondary:hover {
+      background: rgba(250, 247, 238, 0.25);
+      border-color: #FFD700;
+      transform: translateY(-6px) scale(1.05);
+    }
+
+    /* Seção de Destaques Melhorada */
+    .featured-section {
+      padding: 100px 60px;
+      max-width: 1440px;
+      margin: 0 auto;
+      background: rgba(0, 26, 20, 0.4);
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .section-title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2.5rem;
+      color: #FFD700;
+      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: rgba(250, 247, 238, 0.7);
+      font-weight: 400;
+    }
+
+    .featured-carousel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .featured-card {
+      position: relative;
+      height: 450px;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+    }
+
+    .featured-card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .featured-card:hover .featured-card-image {
+      transform: scale(1.1);
+    }
+
+    .featured-card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 24px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      transition: opacity 0.3s ease;
+    }
+
+    .featured-card-genre {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(255, 215, 0, 0.25);
+      border-radius: 20px;
+      font-size: 12px;
+      color: #FFD700;
+      margin-bottom: 12px;
+    }
+
+    .featured-card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #FAF7EE;
+      margin-bottom: 8px;
+    }
+
+    .featured-card-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #FFD700;
+    }
+
+    .rating-stars {
+      letter-spacing: 2px;
+    }
+
+    /* Seção de Atividade Melhorada */
+    .activity-section {
+      padding: 100px 60px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .activity-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+
+    .activity-card {
+      background: rgba(250, 247, 238, 0.05);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(250, 247, 238, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .activity-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .activity-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #FFD700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .activity-username {
+      font-weight: 600;
+      color: #FAF7EE;
+    }
+
+    .activity-action {
+      font-size: 15px;
+      color: rgba(250, 247, 238, 0.8);
+    }
+
+    .activity-game {
+      font-weight: 700;
+      color: #FFD700;
+    }
+
+    .activity-timestamp {
+      font-size: 13px;
+      color: rgba(250, 247, 238, 0.6);
+      margin-top: auto;
+    }
+
+    .view-more-btn {
+      display: block;
+      margin: 40px auto 0;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, #005541, #007556);
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #FAF7EE;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .view-more-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 85, 65, 0.4);
+    }
+
+    /* Responsividade */
+    @media (max-width: 1024px) {
+      .hero-section {
+        height: 70vh;
+      }
+
+      .hero-content {
+        padding: 30px;
+      }
+
+      .featured-section, .activity-section {
+        padding: 80px 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .topbar {
+        padding: 0 20px;
+      }
+
+      .nav-container {
+        gap: 16px;
+      }
+
+      .hero-title {
+        font-size: 1rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .hero-btn {
+        padding: 16px 32px;
+        font-size: 15px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .featured-carousel {
+        gap: 30px;
+      }
+
+      .activity-list {
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content {
+        padding: 20px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .featured-section, .activity-section {
+        padding: 60px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="home-wrapper">
+    <!-- Topbar -->
+  <header class="topbar">
+    <div class="logo-container">
+      <img src="logo_checkpoint.png" alt="Checkpoint Logo" class="logo-img">
+      <span class="site-name">CHECKPOINT</span>
+    </div>
+    <nav class="nav-container">
+      <a href="inicio.html" class="nav-btn active ">Início</a>
+      <a href="index.html" class="nav-btn">Jogos</a>
+      <a href="listas.html" class="nav-btn">Listas</a>
+      <a href="perfil.html" class="nav-btn">Perfil</a>
+    </nav>
+  </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-background"></div>
+      <div class="hero-content">
+        <span class="hero-badge">🎮 Sua jornada começa aqui</span>
+        <div class="hero-multiline">
+          <p>Acompanhe jogos jogos que você jogou.</p>
+          <p>Salve aqueles que você quer jogar.</p>
+          <p>Fale para seus amigos qual o melhor.</p>
+        </div>
+        <p class="hero-subtitle">Junte-se à comunidade de gamers apaixonados e descubra novos mundos!</p>
+        <div class="hero-buttons">
+          <a href="index.html" class="hero-btn hero-btn-primary">Explorar Jogos</a>
+          <a href="perfil.html" class="hero-btn hero-btn-secondary">Fazer Login</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Destaques -->
+    <section class="featured-section">
+      <div class="section-header">
+        <h2 class="section-title">Jogos em Destaque</h2>
+        <p class="section-subtitle">Os títulos mais populares da comunidade</p>
+      </div>
+      <div class="featured-carousel">
+        <a href="game.html?id=1" class="featured-card">
+          <img src="https://static.wixstatic.com/media/345484_46551da839974a5a9ea36be62189218c~mv2.jpg/v1/fill/w_980,h_551,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/345484_46551da839974a5a9ea36be62189218c~mv2.jpg" alt="The Legend of Zelda: Breath of the Wild" class="featured-card-image">
+          <div class="featured-card-overlay">
+            <span class="featured-card-genre">Aventura</span>
+            <h3 class="featured-card-title">The Legend of Zelda: BOTW</h3>
+            <div class="featured-card-rating">
+              <span class="rating-stars">★★★★★</span>
+              <span>4.8</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="game.html?id=8" class="featured-card">
+          <img src="https://i.redd.it/s6mgkjjwojk91.png" alt="Elden Ring" class="featured-card-image">
+          <div class="featured-card-overlay">
+            <span class="featured-card-genre">RPG</span>
+            <h3 class="featured-card-title">Elden Ring</h3>
+            <div class="featured-card-rating">
+              <span class="rating-stars">★★★★★</span>
+              <span>4.8</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="game.html?id=10" class="featured-card">
+          <img src="https://static0.polygonimages.com/wordpress/wp-content/uploads/chorus/uploads/chorus_asset/file/10692939/687474703a2f2f692e696d6775722e636f6d2f476c537665734d2e6a7067.jpg" alt="God of War" class="featured-card-image">
+          <div class="featured-card-overlay">
+            <span class="featured-card-genre">Ação</span>
+            <h3 class="featured-card-title">God of War</h3>
+            <div class="featured-card-rating">
+              <span class="rating-stars">★★★★★</span>
+              <span>4.9</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="game.html?id=2" class="featured-card">
+          <img src="https://static.cdprojektred.com/cms.cdprojektred.com/crystal-news/d4170fe6ea0b174a38926a5f0a0f7fce03344a11.png" alt="The Witcher 3: Wild Hunt" class="featured-card-image">
+          <div class="featured-card-overlay">
+            <span class="featured-card-genre">RPG</span>
+            <h3 class="featured-card-title">The Witcher 3</h3>
+            <div class="featured-card-rating">
+              <span class="rating-stars">★★★★★</span>
+              <span>4.9</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Seção de Atividade -->
+    <section class="activity-section">
+      <div class="section-header">
+        <h2 class="section-title">Atividade Recente</h2>
+        <p class="section-subtitle">Veja o que a comunidade está fazendo</p>
+      </div>
+
+      <div class="activity-list" id="activityList">
+        <!-- Conteúdo dinâmico será inserido aqui pelo backend -->
+        <!-- Exemplo de card estático para visualização -->
+        <div class="activity-card">
+          <div class="activity-user">
+            <div class="activity-avatar">👤</div>
+            <span class="activity-username">User123</span>
+          </div>
+          <p class="activity-action">Avaliou <span class="activity-game">Elden Ring</span> com 5 estrelas!</p>
+          <span class="activity-timestamp">Há 2 horas</span>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-user">
+            <div class="activity-avatar">🎮</div>
+            <span class="activity-username">GamerPro</span>
+          </div>
+          <p class="activity-action">Adicionou <span class="activity-game">God of War</span> à lista de desejos.</p>
+          <span class="activity-timestamp">Há 5 horas</span>
+        </div>
+      </div>
+
+      <button class="view-more-btn">Ver Atividade Completa</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <img src="logo_checkpoint.png" alt="Checkpoint Logo" class="footer-logo">
+          <span class="footer-site-name">CHECKPOINT</span>
+        </div>
+
+        <nav class="footer-nav">
+          <a href="inicio.html" class="footer-link">Início</a>
+          <a href="index.html" class="footer-link">Jogos</a>
+          <a href="listas.html" class="footer-link">Listas</a>
+          <a href="perfil.html" class="footer-link">Perfil</a>
+        </nav>
+
+        <div class="footer-copyright">
+          <p>&copy; <span id="currentYear"></span> Checkpoint. Todos os direitos reservados.</p>
+          <p class="footer-tagline">Sua jornada de jogos começa aqui.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="games-data.js"></script>
+  <script>
+    // Script para carregar atividade recente (exemplo)
+    const activityList = document.getElementById('activityList');
+    // Aqui iria o fetch para API, mas como exemplo, deixa estático
+  </script>
+</body>
+</html>
