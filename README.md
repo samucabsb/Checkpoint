@@ -4,6 +4,9 @@ Checkpoint/
 │   ├── game.js
 │   └── main.js
 │
+├── imgs/
+│   ├── posters.jps
+│
 ├── logo_checkpoint.png
 │
 ├── index.html
